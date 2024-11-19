@@ -18,7 +18,7 @@ const validType = {
 };
 
 // user inputs elements
-let firstnameElem = mainForm.firstname,
+const firstnameElem = mainForm.firstname,
   middlenameElem = mainForm.middlename,
   lastnameElem = mainForm.lastname,
   imageElem = mainForm.image,
@@ -29,7 +29,7 @@ let firstnameElem = mainForm.firstname,
   summaryElem = mainForm.summary;
 
 // display elements
-let nameDsp = document.getElementById('fullname_dsp'),
+const nameDsp = document.getElementById('fullname_dsp'),
   imageDsp = document.getElementById('image_dsp'),
   phonenoDsp = document.getElementById('phoneno_dsp'),
   emailDsp = document.getElementById('email_dsp'),
@@ -44,15 +44,15 @@ let nameDsp = document.getElementById('fullname_dsp'),
 
 // first value is for the attributes and second one passes the nodelists
 const fetchValues = (attrs, ...nodeLists) => {
-  let elemsAttrsCount = nodeLists.length;
-  let elemsDataCount = nodeLists[0].length;
-  let tempDataArr = [];
+  const elementsAttrsCount = nodeLists.length;
+  const elementsDataCount = nodeLists[0].length;
+  const tempDataArr = [];
 
   // first loop deals with the no of repeaters value
-  for (let i = 0; i < elemsDataCount; i++) {
-    let dataObj = {}; // creating an empty object to fill the data
+  for (let i = 0; i < elementsDataCount; i++) {
+    const dataObj = {}; // creating an empty object to fill the data
     // second loop fetches the data for each repeaters value or attributes
-    for (let j = 0; j < elemsAttrsCount; j++) {
+    for (let j = 0; j < elementsAttrsCount; j++) {
       // setting the key name for the object and fill it with data
       dataObj[`${attrs[j]}`] = nodeLists[j][i].value;
     }
@@ -64,13 +64,13 @@ const fetchValues = (attrs, ...nodeLists) => {
 
 const getUserInputs = () => {
   // achivements
-  let achievementsTitleElem = document.querySelectorAll('.achieve_title'),
+  const achievementsTitleElem = document.querySelectorAll('.achieve_title'),
     achievementsDescriptionElem = document.querySelectorAll(
       '.achieve_description'
     );
 
   // experiences
-  let expTitleElem = document.querySelectorAll('.exp_title'),
+  const expTitleElem = document.querySelectorAll('.exp_title'),
     expOrganizationElem = document.querySelectorAll('.exp_organization'),
     expLocationElem = document.querySelectorAll('.exp_location'),
     expStartDateElem = document.querySelectorAll('.exp_start_date'),
@@ -78,18 +78,18 @@ const getUserInputs = () => {
     expDescriptionElem = document.querySelectorAll('.exp_description');
 
   // education
-  let eduSchoolElem = document.querySelectorAll('.edu_school'),
+  const eduSchoolElem = document.querySelectorAll('.edu_school'),
     eduDegreeElem = document.querySelectorAll('.edu_degree'),
     eduCityElem = document.querySelectorAll('.edu_city'),
     eduStartDateElem = document.querySelectorAll('.edu_start_date'),
     eduGraduationDateElem = document.querySelectorAll('.edu_graduation_date'),
     eduDescriptionElem = document.querySelectorAll('.edu_description');
 
-  let projTitleElem = document.querySelectorAll('.proj_title'),
+  const projTitleElem = document.querySelectorAll('.proj_title'),
     projLinkElem = document.querySelectorAll('.proj_link'),
     projDescriptionElem = document.querySelectorAll('.proj_description');
 
-  let skillElem = document.querySelectorAll('.skill');
+  const skillElem = document.querySelectorAll('.skill');
 
   // event listeners for form validation
   firstnameElem.addEventListener('keyup', (e) =>
@@ -261,7 +261,7 @@ const getUserInputs = () => {
   };
 };
 
-function validateFormData(elem, elemType, elemName) {
+const validateFormData = (elem, elemType, elemName) => {
   // checking for text string and non empty string
   if (elemType == validType.TEXT) {
     if (!strRegex.test(elem.value) || elem.value.trim().length == 0)
@@ -294,17 +294,17 @@ function validateFormData(elem, elemType, elemName) {
     if (elem.value.trim().length == 0) addErrMsg(elem, elemName);
     else removeErrMsg(elem);
   }
-}
+};
 
 // adding the invalid text
-function addErrMsg(formElem, formElemName) {
+const addErrMsg = (formElem, formElemName) => {
   formElem.nextElementSibling.innerHTML = `${formElemName} is invalid`;
-}
+};
 
 // removing the invalid text
-function removeErrMsg(formElem) {
+const removeErrMsg = (formElem) => {
   formElem.nextElementSibling.innerHTML = '';
-}
+};
 
 // show the list data
 const showListData = (listData, listContainer) => {
@@ -341,20 +341,20 @@ const displayCV = (userData) => {
 
 // generate CV
 const generateCV = () => {
-  let userData = getUserInputs();
+  const userData = getUserInputs();
   displayCV(userData);
-  console.log(userData);
 };
 
-function previewImage() {
-  let oFReader = new FileReader();
+const previewImage = () => {
+  const oFReader = new FileReader();
+
   oFReader.readAsDataURL(imageElem.files[0]);
   oFReader.onload = function (ofEvent) {
     imageDsp.src = ofEvent.target.result;
   };
-}
+};
 
 // print CV
-function printCV() {
+const printCV = () => {
   window.print();
-}
+};
