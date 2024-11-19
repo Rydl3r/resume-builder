@@ -337,6 +337,12 @@ a {
   margin-bottom: 2.6rem;
   line-height: 1.6;
 }
+.resume-template {
+  transition: var(--transition);
+}
+.resume-template:hover {
+  transform: scale(1.05);
+}
 
 /* section one */
 .section-one {
