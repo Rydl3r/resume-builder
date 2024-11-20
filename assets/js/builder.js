@@ -1,5 +1,5 @@
 // regex for validation
-const strRegex = /^[a-zA-Z\s]*$/; // containing only letters
+const strRegex = /^[\p{L}\s]*$/u; // containing only letters
 const emailRegex =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const phoneRegex =
@@ -13,25 +13,25 @@ const validType = {
   TEXT_EMP: 'text_emp',
   EMAIL: 'email',
   DIGIT: 'digit',
-  PHONENO: 'phoneno',
+  PHONE: 'phone',
   ANY: 'any',
 };
 
 // user inputs elements
-const firstnameElem = mainForm.firstname,
-  middlenameElem = mainForm.middlename,
-  lastnameElem = mainForm.lastname,
+const firstNameElem = mainForm.firstName,
+  middleNameElem = mainForm.middleName,
+  lastNameElem = mainForm.lastName,
   imageElem = mainForm.image,
   designationElem = mainForm.designation,
   addressElem = mainForm.address,
   emailElem = mainForm.email,
-  phonenoElem = mainForm.phoneno,
+  phoneElem = mainForm.phone,
   summaryElem = mainForm.summary;
 
 // display elements
 const nameDsp = document.getElementById('fullname_dsp'),
   imageDsp = document.getElementById('image_dsp'),
-  phonenoDsp = document.getElementById('phoneno_dsp'),
+  phoneDsp = document.getElementById('phone_dsp'),
   emailDsp = document.getElementById('email_dsp'),
   addressDsp = document.getElementById('address_dsp'),
   designationDsp = document.getElementById('designation_dsp'),
@@ -92,17 +92,17 @@ const getUserInputs = () => {
   const skillElem = document.querySelectorAll('.skill');
 
   // event listeners for form validation
-  firstnameElem.addEventListener('keyup', (e) =>
+  firstNameElem.addEventListener('keyup', (e) =>
     validateFormData(e.target, validType.TEXT, 'First Name')
   );
-  middlenameElem.addEventListener('keyup', (e) =>
+  middleNameElem.addEventListener('keyup', (e) =>
     validateFormData(e.target, validType.TEXT_EMP, 'Middle Name')
   );
-  lastnameElem.addEventListener('keyup', (e) =>
+  lastNameElem.addEventListener('keyup', (e) =>
     validateFormData(e.target, validType.TEXT, 'Last Name')
   );
-  phonenoElem.addEventListener('keyup', (e) =>
-    validateFormData(e.target, validType.PHONENO, 'Phone Number')
+  phoneElem.addEventListener('keyup', (e) =>
+    validateFormData(e.target, validType.PHONE, 'Phone Number')
   );
   emailElem.addEventListener('keyup', (e) =>
     validateFormData(e.target, validType.EMAIL, 'Email')
@@ -206,13 +206,13 @@ const getUserInputs = () => {
   );
 
   return {
-    firstname: firstnameElem.value,
-    middlename: middlenameElem.value,
-    lastname: lastnameElem.value,
+    firstName: firstNameElem.value,
+    middleName: middleNameElem.value,
+    lastName: lastNameElem.value,
     designation: designationElem.value,
     address: addressElem.value,
     email: emailElem.value,
-    phoneno: phonenoElem.value,
+    phone: phoneElem.value,
     summary: summaryElem.value,
     achievements: fetchValues(
       ['achieve_title', 'achieve_description'],
@@ -283,7 +283,7 @@ const validateFormData = (elem, elemType, elemName) => {
   }
 
   // checking for phone number
-  if (elemType == validType.PHONENO) {
+  if (elemType == validType.PHONE) {
     if (!phoneRegex.test(elem.value) || elem.value.trim().length == 0)
       addErrMsg(elem, elemName);
     else removeErrMsg(elem);
@@ -326,8 +326,8 @@ const showListData = (listData, listContainer) => {
 
 const displayCV = (userData) => {
   nameDsp.innerHTML =
-    userData.firstname + ' ' + userData.middlename + ' ' + userData.lastname;
-  phonenoDsp.innerHTML = userData.phoneno;
+    userData.firstName + ' ' + userData.middleName + ' ' + userData.lastName;
+  phoneDsp.innerHTML = userData.phone;
   emailDsp.innerHTML = userData.email;
   addressDsp.innerHTML = userData.address;
   designationDsp.innerHTML = userData.designation;

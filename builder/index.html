@@ -61,9 +61,9 @@
                   <div class="form-elem">
                     <label for="" class="form-label">Ім'я</label>
                     <input
-                      name="firstname"
+                      name="firstName"
                       type="text"
-                      class="form-control firstname"
+                      class="form-control firstName"
                       id=""
                       onkeyup="generateCV()"
                       placeholder="Тарас"
@@ -76,9 +76,9 @@
                       <span class="opt-text">(необов'язково)</span></label
                     >
                     <input
-                      name="middlename"
+                      name="middleName"
                       type="text"
-                      class="form-control middlename"
+                      class="form-control middleName"
                       id=""
                       onkeyup="generateCV()"
                       placeholder="Григорович"
@@ -88,9 +88,9 @@
                   <div class="form-elem">
                     <label for="" class="form-label">Прізвище</label>
                     <input
-                      name="lastname"
+                      name="lastName"
                       type="text"
-                      class="form-control lastname"
+                      class="form-control lastName"
                       id=""
                       onkeyup="generateCV()"
                       placeholder="Шевченко"
@@ -151,14 +151,16 @@
                     <span class="form-text"></span>
                   </div>
                   <div class="form-elem">
-                    <label for="" class="form-label">Телефон</label>
+                    <label for="" class="form-label"
+                      >Телефон (без пробілів)</label
+                    >
                     <input
-                      name="phoneno"
+                      name="phone"
                       type="text"
-                      class="form-control phoneno"
+                      class="form-control phone"
                       id=""
                       onkeyup="generateCV()"
-                      placeholder="+380 123 456 7890"
+                      placeholder="+380961234567"
                     />
                     <span class="form-text"></span>
                   </div>
@@ -594,7 +596,7 @@
               </div>
               <div class="preview-blk-list">
                 <div class="preview-item">
-                  <span class="preview-item-val" id="phoneno_dsp"></span>
+                  <span class="preview-item-val" id="phone_dsp"></span>
                 </div>
                 <div class="preview-item">
                   <span class="preview-item-val" id="email_dsp"></span>
